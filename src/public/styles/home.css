@@ -1,0 +1,32 @@
+body {
+    margin: 0;
+}
+
+.main {
+    width: 60%;
+    margin: auto;
+}
+
+table, th, td, tr {
+    border: 1px solid;
+}
+
+table {
+    width: 100%;
+}
+
+#title, #detail {
+    color: green;
+}
+
+#delete {
+    color: red;
+}
+
+#title {
+    width: 30%;
+}
+
+#detail {
+    width: 60%;
+}

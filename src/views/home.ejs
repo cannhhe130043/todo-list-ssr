@@ -1,22 +1,26 @@
 <html>
 
 <head>
-
+    <link rel="stylesheet" type="text/css" href="styles/home.css" />  
 </head>
 
 <body>
-    <table>
-        <tr>
-            <th id="title"> Title </th>
-            <th id="detail"> Detail </th>
-        </tr>
-        <% tasks.forEach(task => { %>
+    <div class="main">
+        <table>
             <tr>
-                <td headers="title"> <%= task.title %> </td>
-                <td headers="detail"> <%= task.detail %> </td>
+                <th id="title"> Title </th>
+                <th id="detail"> Detail </th>
+                <th id="delete"> Delete </th>
             </tr>
-        <% }) %>
-    </table>
+            <% tasks.forEach(task => { %>
+                <tr>
+                    <td headers="title"> <%= task.title %> </td>
+                    <td headers="detail"> <%= task.detail %> </td>
+                    <td headers="delete"> <form action='/deleteTask/<%= task.id %>' method="GET"> <button>Delete</button> </form> </td>
+                </tr>
+            <% }) %>
+        </table>
+    </div>
 </body>
 
 </html>

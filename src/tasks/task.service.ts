@@ -8,3 +8,10 @@ export const getTasksByUser = async (username: string): Promise<Task[]> => {
     const tasks: Task[] = result
     return tasks
 }
+
+export const deleteTask = async (id: number): Promise<void> => {
+    await connection('tasktbl')
+                    .delete()
+                    .where({ id })
+    return
+}
