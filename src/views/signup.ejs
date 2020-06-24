@@ -1,0 +1,19 @@
+<html>
+
+<head>
+    <script src="handle/signup.js"></script>
+</head>
+
+<body>
+    <div>
+        <form name="signup" action="/signup" method="POST">
+            <input name="username" type="text" />
+            <input name="password" type="password" />
+            <input name="repassword" type="password" />
+            <label name="error"> <%= error %></label>
+            <button type="button" onclick="checkDuplicatePassword()">Sign Up</button>
+        </form>
+    </div>
+</body>
+
+</html>

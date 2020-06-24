@@ -1,0 +1,22 @@
+<html>
+
+<head>
+
+</head>
+
+<body>
+    <table>
+        <tr>
+            <th id="title"> Title </th>
+            <th id="detail"> Detail </th>
+        </tr>
+        <% tasks.forEach(task => { %>
+            <tr>
+                <td headers="title"> <%= task.title %> </td>
+                <td headers="detail"> <%= task.detail %> </td>
+            </tr>
+        <% }) %>
+    </table>
+</body>
+
+</html>

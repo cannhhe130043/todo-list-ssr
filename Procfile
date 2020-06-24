@@ -1,0 +1,1 @@
+web: tsnd src/app.ts
