@@ -22,11 +22,17 @@ app.use(session({
 }))
 
 app.get(['/', '/login'], (req: Request, res: Response) => {
-    res.render('login', { error: '' })
+    return res.render('login', { error: '' })
+})
+
+app.get('/logout', (req: Request, res: Response) => {
+    req!.session!.destroy( () => {
+        return res.redirect('login')
+    })
 })
 
 app.get('/signup', (req: Request, res: Response) => {
-    res.render('signup', { error: '' })
+    return res.render('signup', { error: '' })
 })
 
 app.get('/home', async (req: Request, res: Response) => {
