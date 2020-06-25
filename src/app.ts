@@ -28,7 +28,7 @@ app.get(['/', '/login'], (req: Request, res: Response) => {
 
 app.get('/logout', (req: Request, res: Response) => {
     req!.session!.destroy( () => {
-        return res.redirect('login')
+        return res.render('login', { error: '' })
     })
 })
 
