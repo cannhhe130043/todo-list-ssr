@@ -13,15 +13,17 @@
             <div class="col-md-3"></div>
             <div class="col-md-6">
                 <div class="todolist not-done">
-                    <div class="welcome">
-                        <h3>Hi <label class="username"><%= username %></label>, you have <%= tasks.length %>
-                            <% if(tasks.length > 1){ %>
-                            tasks
-                            <% }else{ %>
-                            task
-                            <% } %>
-                            to work</h3> <button class="btn btn-success">Logout&nbsp;<i class="fa fa-sign-out"></i></button>
-                    </div>
+                    <form action="/logout" method="GET">
+                        <div class="welcome">
+                            <h3>Hi <label class="username"><%= username %></label>, you have <%= tasks.length %>
+                                <% if(tasks.length > 1){ %>
+                                tasks
+                                <% }else{ %>
+                                task
+                                <% } %>
+                                to work</h3> <button class="btn btn-success">Logout&nbsp;<i class="fa fa-sign-out"></i></button>
+                        </div>
+                    </form>
                     <form action="/addTask" method="POST">
                         <div class="add-task">
                             <input name="title" required type="text" class="form-control add-todo"
