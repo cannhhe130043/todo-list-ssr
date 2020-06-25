@@ -13,8 +13,6 @@ export const getTasksByUser = async (userId: number): Promise<Task[]> => {
 }
 
 export const deleteTask = async (id: number): Promise<void> => {
-    console.log(id);
-    
     await connection('tasktbl')
         .delete()
         .where({ id })

@@ -39,8 +39,9 @@ app.get('/signup', (req: Request, res: Response) => {
 
 app.get('/home', checkAuth, async (req: Request, res: Response) => {
     const userId = req!.session!.userId
+    const username = req!.session!.username
     const tasks = await getTasksByUser(userId)
-    return res.render('home', { tasks })
+    return res.render('home', { tasks, username })
 })
 
 app.post('/signup', async (req: Request, res: Response) => {

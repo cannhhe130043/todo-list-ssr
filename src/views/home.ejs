@@ -1,32 +1,58 @@
 <html>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="styles/home.css" />
+    <link rel="stylesheet" type="text/css" href="/home/css/home.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
-    <div class="main">
-        <div class="header">
-            <a href="/addTask"><button class="btn-add-task">Add new task</button></a>
-            <a href="/logout"><button class="btn-logout">Logout</button></a>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="todolist not-done">
+                    <div class="welcome">
+                        <h3>Hi <label class="username"><%= username %></label>, you have <%= tasks.length %>
+                            <% if(tasks.length > 1){ %>
+                            tasks
+                            <% }else{ %>
+                            task
+                            <% } %>
+                            to work</h3> <button class="btn btn-success">Logout&nbsp;<i class="fa fa-sign-out"></i></button>
+                    </div>
+                    <form action="/addTask" method="POST">
+                        <div class="add-task">
+                            <input name="title" required type="text" class="form-control add-todo"
+                                placeholder="Add todo">
+                            <button type="submit" class="btn btn-success">Add task</button>
+                        </div>
+                    </form>
+                    <hr>
+                    <ul id="sortable" class="list-unstyled">
+                        <li class="ui-state-default">
+                            <div class="checkbox">
+                                <% tasks.forEach(task => { %>
+                                <form action="/deleteTask/<%= task.id %>">
+                                    <div class="task">
+                                        <i class="fa fa-tasks"></i><label><%= task.title %></label>
+                                        <button type="submit" class="btn btn-success"><i class="fa fa-check" style="color: green;font-size: 10px;"></i>&nbsp;Mask as done</button></a>
+                                    </div>
+                                    <hr>
+                                </form>
+                                <% }) %>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <table>
-            <tr>
-                <th id="title"> Title </th>
-                <th id="detail"> Detail </th>
-                <th id="delete"> Delete </th>
-            </tr>
-            <% tasks.forEach(task => { %>
-            <tr>
-                <td headers="title"> <%= task.title %> </td>
-                <td headers="detail"> <%= task.detail %> </td>
-                <td headers="delete">
-                    <a href="/deleteTask/<%= task.id %>"><button class="btn-delete-task">Delete</button></a>
-                </td>
-            </tr>
-            <% }) %>
-        </table>
     </div>
 </body>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
 
 </html>
