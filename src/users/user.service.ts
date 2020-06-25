@@ -1,32 +1,29 @@
 import { connection } from '../connect.database'
 import { User } from './user.type'
 
-export const login = async (userLoginDto: User): Promise<boolean> => {
-    const result = await connection.select('*')
+export const login = async (userLoginDto: User): Promise<User> => {
+    const users = await connection.select('*')
         .from('usertbl')
         .where({
             username: userLoginDto.username,
             password: userLoginDto.password
         })
-    if (!result.length) {
-        return false
-    }
-    return true
+    return users[0] as User
 }
 
 export const getUserByUsername = async (username: string): Promise<User> => {
-    const user = await connection.select('*')
+    const users = await connection.select('*')
                         .from('usertbl')
                         .where({ username })
-    return user[0] as User
+    return users[0] as User
 }
 
 export const signup = async (userSignupDto: User): Promise<User> => {
-    const user = await connection('usertbl')
+    const users = await connection('usertbl')
                         .insert({
                             username: userSignupDto.username,
                             password: userSignupDto.password
                         })
                         .returning('*')
-    return user[0] as User
+    return users[0] as User
 }

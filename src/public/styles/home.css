@@ -7,12 +7,22 @@ body {
     margin: auto;
 }
 
-table, th, td, tr {
-    border: 1px solid;
+th, td, tr {
+    border: 1px dotted green;
+}
+
+tr {
+    text-align: center;
+}
+
+td .btn-delete-task {
+    background-color: palevioletred;
+    width: 100%;
 }
 
 table {
     width: 100%;
+    border: 1px solid;
 }
 
 #title, #detail {
@@ -29,4 +39,12 @@ table {
 
 #detail {
     width: 60%;
+}
+
+.header .btn-add-task {
+    float: left;
+}
+
+.header .btn-logout {
+    float: right;
 }

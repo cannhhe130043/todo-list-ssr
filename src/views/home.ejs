@@ -1,15 +1,14 @@
 <html>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="styles/home.css" />  
+    <link rel="stylesheet" type="text/css" href="styles/home.css" />
 </head>
 
 <body>
     <div class="main">
-        <div>
-            <form action="/logout" method="GET">
-                <button type="submit">Logout</button>
-            </form>
+        <div class="header">
+            <a href="/addTask"><button class="btn-add-task">Add new task</button></a>
+            <a href="/logout"><button class="btn-logout">Logout</button></a>
         </div>
         <table>
             <tr>
@@ -18,11 +17,13 @@
                 <th id="delete"> Delete </th>
             </tr>
             <% tasks.forEach(task => { %>
-                <tr>
-                    <td headers="title"> <%= task.title %> </td>
-                    <td headers="detail"> <%= task.detail %> </td>
-                    <td headers="delete"> <form action='/deleteTask/<%= task.id %>' method="GET"> <button>Delete</button> </form> </td>
-                </tr>
+            <tr>
+                <td headers="title"> <%= task.title %> </td>
+                <td headers="detail"> <%= task.detail %> </td>
+                <td headers="delete">
+                    <a href="/deleteTask/<%= task.id %>"><button class="btn-delete-task">Delete</button></a>
+                </td>
+            </tr>
             <% }) %>
         </table>
     </div>

@@ -2,16 +2,18 @@
 
 <head>
     <script src="handle/signup.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles/signup.css" />
 </head>
 
 <body>
-    <div>
+    <div class="main">
         <form name="signup" action="/signup" method="POST">
-            <input name="username" type="text" />
-            <input name="password" type="password" />
-            <input name="repassword" type="password" />
-            <label name="error"> <%= error %></label>
-            <button type="button" onclick="checkDuplicatePassword()">Sign Up</button>
+            Username: <input name="username" type="text" />
+            Password: <input name="password" type="password" />
+            Repassword: <input name="repassword" type="password" />
+            <label class="error" > <%= error %></label>
+            <div class="signup"> <button type="button" onclick="checkDuplicatePassword()">Sign Up</button> </div>
+            <a href="/"> <button>Login</button> </a>
         </form>
     </div>
 </body>

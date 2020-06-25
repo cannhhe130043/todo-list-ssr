@@ -1,16 +1,16 @@
 <html>
 
 <head>
-
+    <link rel="stylesheet" type="text/css" href="styles/login.css" />
 </head>
 
 <body>
-    <div>
+    <div class="main">
         <form action="/login" method="POST">
-            <input name="username" type="text" />
-            <input name="password" type="password" />
-            <label> <%= error %> </label>
-            <button type="submit">Login</button>
+            Username: <input name="username" type="text" />
+            Password: <input name="password" type="password" />
+            <label class="error"> <%= error %> </label>
+            <div class="login"> <button type="submit">Login</button> </div>
         </form>
         <a href="/signup">Sign Up</a>
     </div>
