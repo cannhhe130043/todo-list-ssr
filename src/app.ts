@@ -51,7 +51,7 @@ app.post('/signup', async (req: Request, res: Response) => {
     const newUser = await signup(userSingupDto)
     req!.session!.username = newUser.username
     req!.session!.userId = newUser.id
-    return res.redirect('home')
+    return res.redirect('/home')
 })
 
 app.post('/login', async (req: Request, res: Response) => {
@@ -60,7 +60,7 @@ app.post('/login', async (req: Request, res: Response) => {
     if (user) {
         req!.session!.username = user.username
         req!.session!.userId = user.id
-        return res.redirect('home')
+        return res.redirect('/home')
     }
     return res.render('login', { error: 'Username or password is incorrect' })
 })
@@ -75,13 +75,13 @@ app.post('/addTask',async (req: Request, res: Response) => {
     if(!newTask){
         return res.render('addTask', { error: 'Create task fail' })
     }
-    return res.redirect('home')
+    return res.redirect('/home')
 })
 
 app.get('/deleteTask/:id', async (req: Request, res: Response) => {
-    const id: number = +req.params.id
+    const id = parseInt(req.params.id || '-1')
     await deleteTask(id)
-    return res.redirect('home')
+    return res.redirect('/home')
 })
 
 const port: number = parseInt(process.env.PORT || '3000')
