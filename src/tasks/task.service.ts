@@ -25,7 +25,6 @@ export const createTask = async (createTaskDto: CreateTaskDto): Promise<Task> =>
     const task = await connection('tasktbl')
         .insert({
             title: createTaskDto.title,
-            detail: createTaskDto.detail,
             userid: createTaskDto.userId
         })
         .returning('*')

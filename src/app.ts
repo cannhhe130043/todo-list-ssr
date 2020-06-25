@@ -7,6 +7,7 @@ import { getTasksByUser, deleteTask, createTask } from './tasks/task.service'
 import { User } from './users/user.type'
 import session from 'express-session'
 import { CreateTaskDto } from './tasks/create.task.dto'
+import { checkAuth } from './middlewares/auth'
 dotenv.config()
 
 const app = express()
@@ -22,7 +23,7 @@ app.use(session({
     cookie: { maxAge: 3600 * 24 * 1000 }
 }))
 
-app.get(['/', '/login'], (req: Request, res: Response) => {
+app.get(['/', '/login'],(req: Request, res: Response) => {
     return res.render('login', { error: '' })
 })
 
@@ -36,7 +37,7 @@ app.get('/signup', (req: Request, res: Response) => {
     return res.render('signup', { error: '' })
 })
 
-app.get('/home', async (req: Request, res: Response) => {
+app.get('/home', checkAuth, async (req: Request, res: Response) => {
     const userId = req!.session!.userId
     const tasks = await getTasksByUser(userId)
     return res.render('home', { tasks })
@@ -65,11 +66,11 @@ app.post('/login', async (req: Request, res: Response) => {
     return res.render('login', { error: 'Username or password is incorrect' })
 })
 
-app.get('/addTask', (req: Request, res: Response) => {
+app.get('/addTask', checkAuth, (req: Request, res: Response) => {
     return res.render('addTask', { error: '' })
 })
 
-app.post('/addTask',async (req: Request, res: Response) => {
+app.post('/addTask', checkAuth, async (req: Request, res: Response) => {
     const createTaskDto: CreateTaskDto = { ...req.body, userId: req!.session!.userId }
     const newTask = await createTask(createTaskDto)
     if(!newTask){
@@ -78,7 +79,7 @@ app.post('/addTask',async (req: Request, res: Response) => {
     return res.redirect('/home')
 })
 
-app.get('/deleteTask/:id', async (req: Request, res: Response) => {
+app.get('/deleteTask/:id', checkAuth, async (req: Request, res: Response) => {
     const id = parseInt(req.params.id || '-1')
     await deleteTask(id)
     return res.redirect('/home')
